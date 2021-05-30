@@ -1,0 +1,29 @@
+{
+  "name": "client",
+  "version": "1.0.7",
+  "description": "Travel",
+  "node-main": "app.js",
+  "main": "http://localhost:9090/",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Santosh Chaudhari",
+  "window": {
+    "toolbar": false,
+    "width": 1024,
+    "height": 768,
+    "icon": "icon.png",
+    "frame": true
+  },
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "compression": "^1.7.4",
+    "express": "^4.13.4",
+    "express-session": "^1.15.5",
+    "mongodb": "^3.6.3",
+    "path": "^0.12.7",
+    "querystring": "^0.2.0",
+    "url": "^0.11.0"
+  }
+}
