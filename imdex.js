@@ -8,7 +8,6 @@ const url = require('url');
 const qs = require('querystring');
 const path = require("path");
 const session = require('express-session');
-const { Console } = require('console');
 console.log('--------------')
 console.log(process.env.MONGODB_URI)
 console.log('--------------')
