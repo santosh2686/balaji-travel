@@ -11,6 +11,24 @@ const session = require('express-session');
 
 const dbUrl = "mongodb+srv://admin:admin@travel.ecepf.mongodb.net?retryWrites=true&w=majority";
 
+let db;
+const connectionOptions = {
+   useNewUrlParser: true,
+   useUnifiedTopology: true
+}
+
+MongoClient.connect(dbUrl, connectionOptions, function(err, client) {	
+  if (err){
+      console.log('Database is not connected...');
+      return;
+  }
+  db = client.db('travel-agency');
+  var port = process.env.PORT || 9090;
+  app.listen(port, () => {
+      console.log('Application Running on port : '+port);
+  });
+});
+
 app.use(session({
     secret: '278sbkn4-4Dsahn44-WppQ38S-qwhbk456-80nshdnfh-78sdfgnk10376s',
     name: 'sessionId',
@@ -27,7 +45,6 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/dist/index.html'));
 });
 
-
 // Authentication and Authorization Middleware
 const auth = function (req, res, next) {
     if (req.session && req.session.loggedIn) {
@@ -36,24 +53,6 @@ const auth = function (req, res, next) {
       res.sendStatus(401);
     }
 };
-
-  let db;
-  const connectionOptions = {
-     useNewUrlParser: true,
-     useUnifiedTopology: true
-  }
-
- MongoClient.connect(dbUrl, connectionOptions, function(err, client) {	
-    if (err){
-        console.log('Database is not connected...');
-        return;
-    }
-    db = client.db('travel-agency');
-    var port = process.env.PORT || 9090;
-    app.listen(port, () => {
-        console.log('Application Running on port : '+port);
-    });
-});
 
 app.get('/login', function(req, res) {
     const queryObject = url.parse(req.url, true).query;
@@ -82,10 +81,11 @@ app.get('/logout', function (req, res) {
     res.send("logout success!");
   });
   
-
+/*
 app.use(auth, function(req, res, next) {
     next()
 })
+*/
 
 app.route('/v1/:collection')
 .get(function(req,res) {
