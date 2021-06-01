@@ -43,7 +43,7 @@ const auth = function (req, res, next) {
      useUnifiedTopology: true
   }
 
- MongoClient.connect(dbUrl, connectionOptions, function(err, client) {		
+ MongoClient.connect(dbUrl, connectionOptions, function(err, client) {	
     if (err){
         console.log('Database is not connected...');
         return;
