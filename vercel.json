@@ -1,5 +1,3 @@
 {
-  "version": 2,
-  "builds": [{ "src": "index.js", "use": "@now/node-server" }],
-  "rewrites": [{ "source": "/login", "destination": "/" }]
+  "rewrites": [{ "source": "/login", "destination": "/api" }]
 }
